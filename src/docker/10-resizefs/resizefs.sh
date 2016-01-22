@@ -10,17 +10,14 @@ if [ -e "${STAMP}" ]; then
 fi
 
 if [ -b "${RESIZE_DEV}" ]; then
-  START=$(fdisk ${RESIZE_DEV} <<EOF | grep -e "^${RESIZE_DEV}1" | awk '{print $2}'
-p
-q
-EOF
-  )
+
   fdisk ${RESIZE_DEV} <<EOF
+p
 d
 n
 p
 1
-${START}
+
 
 a
 w
